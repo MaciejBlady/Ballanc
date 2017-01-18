@@ -42,7 +42,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 7
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -71,7 +71,8 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000001, guid: 125c360330174de4387c9bb1c9be4808,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -255,9 +256,9 @@ GameObject:
   - component: {fileID: 1206462970}
   - component: {fileID: 1206462976}
   - component: {fileID: 1206462975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,7 +333,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1206462969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.37, y: 4.16, z: 0.59}
+  m_LocalPosition: {x: -0.93, y: 4.16, z: 0.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -408,7 +409,13 @@ Prefab:
       propertyPath: m_Name
       value: Ballanc
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 65235661160778568, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 65244821326088708, guid: 61298c0a11e178641bc1d31ee2226bd7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 61298c0a11e178641bc1d31ee2226bd7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1968895385 stripped
