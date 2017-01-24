@@ -27,28 +27,38 @@ public class AccelarationTester : MonoBehaviour
         _xCalibratedValue = 0.0f;
         _yCalibratedValue = 0.0f;
         _zCalibratedValue = 0.0f;
-        Invoke("EndCalibration", 0.5f);
+        Invoke("EndCalibrating", 1.0f);
     }
 
     private void Update()
     {
-        string calibratedText = string.Format("Is Calibrating = {0}", _isCalibrating);
+        string rawText = string.Format("Raw Values\nX:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}", Input.acceleration.x, Input.acceleration.y, Input.acceleration.z);
+        string calibratedText = string.Format("Is Calibrating = {0}\n", _isCalibrating);
+        string recalculatedText = string.Format("Recalculated Values\n");
         if (_isCalibrating)
         {
             _counts++;
             _xCalibratedValue += Input.acceleration.x;
-            _yCalibratedValue += Input.acceleration.z;
+            _yCalibratedValue += Input.acceleration.y;
+            _zCalibratedValue += Input.acceleration.z;
         }
         else
         {
             calibratedText += string.Format("Calibrated Values\nX:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}", _xCalibratedValue, _yCalibratedValue, _zCalibratedValue);
-            RecalculatedText.GetComponent<Text>().text = string.Format("Recalculated Values\nX:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}",
-                RecalculateValue(Input.acceleration.x, _xCalibratedValue, _xRangeWidth),
-                RecalculateValue(Input.acceleration.y, _yCalibratedValue, _yRangeWidth),
-                RecalculateValue(Input.acceleration.z, _zCalibratedValue, _zRangeWidth));
+            //recalculatedText += string.Format("X:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}",
+            //    RecalculateValue(Input.acceleration.x, _xCalibratedValue, _xRangeWidth),
+            //    RecalculateValue(Input.acceleration.y, _yCalibratedValue, _yRangeWidth),
+            //    RecalculateValue(Input.acceleration.z, _zCalibratedValue, _zRangeWidth));
+            recalculatedText += string.Format("X:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}",
+             RecalculateValue2(Input.acceleration.x, _xCalibratedValue, _xRangeWidth),
+             RecalculateValue2(Input.acceleration.y, _yCalibratedValue, _yRangeWidth),
+             RecalculateValue2(Input.acceleration.z, _zCalibratedValue, _zRangeWidth));
         }
-        RawDataText.GetComponent<Text>().text = string.Format("Raw Values\nX:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}", Input.acceleration.x, Input.acceleration.y, Input.acceleration.z);
-	}
+        RawDataText.GetComponent<Text>().text = rawText;
+        CalibratedText.GetComponent<Text>().text = calibratedText;
+        RecalculatedText.GetComponent<Text>().text = recalculatedText;
+
+    }
 
     public void Vibrate()
     {
@@ -63,6 +73,7 @@ public class AccelarationTester : MonoBehaviour
         _xRangeWidth = 1.0f - Mathf.Abs(_xCalibratedValue);
         _yRangeWidth = 1.0f - Mathf.Abs(_yCalibratedValue);
         _zRangeWidth = 1.0f - Mathf.Abs(_zCalibratedValue);
+        _isCalibrating = false;
     }
 
     private float RecalculateValue(float value, float calibratedValue, float width)
@@ -70,5 +81,20 @@ public class AccelarationTester : MonoBehaviour
         float newMax = calibratedValue + width;
         float newMin = calibratedValue - width;
         return ((value - MIN) / (MAX - MIN)) * ((newMax - newMin)+ newMin);
+    }
+
+    private float RecalculateValue2(float value, float calibratedValue, float width)
+    {
+        float temp = 0.0f;
+        if (value >= calibratedValue)
+        {
+            temp = value - calibratedValue;
+        }
+        else
+        {
+            temp = calibratedValue - value;
+        }
+
+        return temp;
     }
 }
