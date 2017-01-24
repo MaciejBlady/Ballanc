@@ -31,7 +31,7 @@ public class DetectorManager : MonoBehaviour
 
         maxTiltGO.GetComponent<MeshRenderer>().material.color = Color.red;
         AudioSource.PlayClipAtPoint(WarningSound, maxTiltGO.transform.position);
-        Handheld.Vibrate();
+        //Handheld.Vibrate();
         Invoke("ScanAndWarn", SCAN_TIME - maxTilt);
     }
 

@@ -64,7 +64,7 @@ public class Tilter : MonoBehaviour
     private Vector3 GetRotation(Vector3 acceleration)
     {
         Vector3 values = new Vector3();
-        values.x = RecalculateValue(RecalculateValue(acceleration.x, _xCalibratedValue, _xRangeWidth, MIN, MAX), 0.0f, MAXANGLE, _xCalibratedValue - _xRangeWidth, _xCalibratedValue + _xRangeWidth);
+        values.x = -RecalculateValue(RecalculateValue(acceleration.x, _xCalibratedValue, _xRangeWidth, MIN, MAX), 0.0f, MAXANGLE, _xCalibratedValue - _xRangeWidth, _xCalibratedValue + _xRangeWidth);
         values.z = -RecalculateValue(RecalculateValue(acceleration.y, _yCalibratedValue, _yRangeWidth, MIN, MAX), 0.0f, MAXANGLE, _yCalibratedValue - _yRangeWidth, _yCalibratedValue + _yRangeWidth);
 
         return values;
