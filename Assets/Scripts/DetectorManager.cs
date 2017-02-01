@@ -5,8 +5,6 @@ using UnityEngine;
 public class DetectorManager : MonoBehaviour
 {
     public GameObject[] Detectors;
-    public AudioClip WarningSound;
-
     private const float SCAN_TIME = 1.0f;
 
 	void Start ()
@@ -29,8 +27,23 @@ public class DetectorManager : MonoBehaviour
             }
         }
 
+        if (!GameObject.FindObjectOfType<Tilter>().IsGameTime)
+        {
+            Invoke("ScanAndWarn", SCAN_TIME);
+            return;
+        }
+
         maxTiltGO.GetComponent<MeshRenderer>().material.color = Color.red;
-        AudioSource.PlayClipAtPoint(maxTiltGO.GetComponent<TiltMeter>().WarningSound, maxTiltGO.transform.position);
+
+        if (GameObject.FindObjectOfType<UIManager>().CurrentLanguage == UIManager.Language.ENG)
+        {
+            AudioSource.PlayClipAtPoint(maxTiltGO.GetComponent<TiltMeter>().WarningSound_EN, maxTiltGO.transform.position);
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(maxTiltGO.GetComponent<TiltMeter>().WarningSound_PL, maxTiltGO.transform.position);
+        }
+        
         Handheld.Vibrate();
         Invoke("ScanAndWarn", SCAN_TIME - maxTilt);
     }

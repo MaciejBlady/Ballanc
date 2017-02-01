@@ -5,7 +5,8 @@ using UnityEngine;
 public class TiltMeter : MonoBehaviour {
 
     public GameObject Target;
-    public AudioClip WarningSound;
+    public AudioClip WarningSound_PL;
+    public AudioClip WarningSound_EN;
 
     private MeshRenderer _renderer;
     private float _difference = 0.0f;

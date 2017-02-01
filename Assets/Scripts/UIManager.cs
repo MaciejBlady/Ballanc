@@ -27,6 +27,14 @@ public class UIManager : MonoBehaviour
 
     private Language _currentLanguage;
 
+    public Language CurrentLanguage
+    {
+        get
+        {
+            return _currentLanguage;
+        }
+    }
+
     private void ChangeDisplayedText(Language lang)
     {
         if (lang == Language.ENG)

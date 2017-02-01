@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2299,6 +2299,56 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: 3.7583685
       objectReference: {fileID: 0}
+    - target: {fileID: 114657176155577504, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: WarningSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c2df49458d3781468b44a698e70959b, type: 3}
+    - target: {fileID: 114657176155577504, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: WarningSound_PL
+      value: 
+      objectReference: {fileID: 8300000, guid: efb2a113bc625a442bec168649a09cbc, type: 3}
+    - target: {fileID: 114657176155577504, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: WarningSound_EN
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c2df49458d3781468b44a698e70959b, type: 3}
+    - target: {fileID: 114743071469796898, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: WarningSound_PL
+      value: 
+      objectReference: {fileID: 8300000, guid: da8b3c60e4f5e534caf06649e432c971, type: 3}
+    - target: {fileID: 114743071469796898, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: WarningSound_EN
+      value: 
+      objectReference: {fileID: 8300000, guid: 93f555851d08e8f4e99ef36da62474c6, type: 3}
+    - target: {fileID: 114551699076980548, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: WarningSound_PL
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d5dae8c5f0351f46a243e1656820673, type: 3}
+    - target: {fileID: 114551699076980548, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: WarningSound_EN
+      value: 
+      objectReference: {fileID: 8300000, guid: c971ea878a8e4c04b938cb914dbc0562, type: 3}
+    - target: {fileID: 114550720032657130, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: WarningSound_EN
+      value: 
+      objectReference: {fileID: 8300000, guid: b8e274994713a334a85703e8c95b8fc1, type: 3}
+    - target: {fileID: 114550720032657130, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: WarningSound_PL
+      value: 
+      objectReference: {fileID: 8300000, guid: a27d2ae09b9bce2478519a63e779efa2, type: 3}
+    - target: {fileID: 114169787542801562, guid: 61298c0a11e178641bc1d31ee2226bd7,
+        type: 2}
+      propertyPath: WarningSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cd93642d15018b43a165caf4ce0e25b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61298c0a11e178641bc1d31ee2226bd7, type: 2}
   m_IsPrefabParent: 0
