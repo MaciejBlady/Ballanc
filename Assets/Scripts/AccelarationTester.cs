@@ -6,9 +6,11 @@ public class AccelarationTester : MonoBehaviour
     public GameObject RawDataText;
     public GameObject CalibratedText;
     public GameObject RecalculatedText;
+    public GameObject AnglesText;
 
     private const float MIN = -1.0f;
     private const float MAX = 1.0f;
+    private const float MAXANGLE = 30.0f;
 
     private bool _isCalibrating;
 
@@ -35,6 +37,7 @@ public class AccelarationTester : MonoBehaviour
         string rawText = string.Format("Raw Values\nX:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}", Input.acceleration.x, Input.acceleration.y, Input.acceleration.z);
         string calibratedText = string.Format("Is Calibrating = {0}\n", _isCalibrating);
         string recalculatedText = string.Format("Recalculated Values\n");
+        string anglesText = string.Format("Angles Values\n");
         if (_isCalibrating)
         {
             _counts++;
@@ -45,19 +48,24 @@ public class AccelarationTester : MonoBehaviour
         else
         {
             calibratedText += string.Format("Calibrated Values\nX:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}", _xCalibratedValue, _yCalibratedValue, _zCalibratedValue);
-            //recalculatedText += string.Format("X:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}",
-            //    RecalculateValue(Input.acceleration.x, _xCalibratedValue, _xRangeWidth),
-            //    RecalculateValue(Input.acceleration.y, _yCalibratedValue, _yRangeWidth),
-            //    RecalculateValue(Input.acceleration.z, _zCalibratedValue, _zRangeWidth));
             recalculatedText += string.Format("X:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}",
-             RecalculateValue2(Input.acceleration.x, _xCalibratedValue, _xRangeWidth),
-             RecalculateValue2(Input.acceleration.y, _yCalibratedValue, _yRangeWidth),
-             RecalculateValue2(Input.acceleration.z, _zCalibratedValue, _zRangeWidth));
+                RecalculateValue(Input.acceleration.x, _xCalibratedValue, _xRangeWidth, MIN, MAX),
+                RecalculateValue(Input.acceleration.y, _yCalibratedValue, _yRangeWidth, MIN, MAX),
+                RecalculateValue(Input.acceleration.z, _zCalibratedValue, _zRangeWidth, MIN, MAX));
+            Vector3 values = new Vector3();
+            values.x = RecalculateValue(RecalculateValue(Input.acceleration.x, _xCalibratedValue, _xRangeWidth, MIN, MAX), 0.0f, MAXANGLE, _xCalibratedValue - _xRangeWidth, _xCalibratedValue + _xRangeWidth);
+            values.y = RecalculateValue(RecalculateValue(Input.acceleration.y, _yCalibratedValue, _yRangeWidth, MIN, MAX), 0.0f, MAXANGLE, _yCalibratedValue - _yRangeWidth, _yCalibratedValue + _yRangeWidth);
+            values.z = RecalculateValue(RecalculateValue(Input.acceleration.z, _zCalibratedValue, _zRangeWidth, MIN, MAX), 0.0f, MAXANGLE, _zCalibratedValue - _zRangeWidth, _zCalibratedValue + _zRangeWidth);
+            anglesText += string.Format("X:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}", values.x, values.y, values.z);
+            //recalculatedText += string.Format("X:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}",
+            // RecalculateValue2(Input.acceleration.x, _xCalibratedValue, _xRangeWidth),
+            // RecalculateValue2(Input.acceleration.y, _yCalibratedValue, _yRangeWidth),
+            // RecalculateValue2(Input.acceleration.z, _zCalibratedValue, _zRangeWidth));
         }
         RawDataText.GetComponent<Text>().text = rawText;
         CalibratedText.GetComponent<Text>().text = calibratedText;
         RecalculatedText.GetComponent<Text>().text = recalculatedText;
-
+        AnglesText.GetComponent<Text>().text = anglesText;
     }
 
     public void Vibrate()
@@ -76,11 +84,11 @@ public class AccelarationTester : MonoBehaviour
         _isCalibrating = false;
     }
 
-    private float RecalculateValue(float value, float calibratedValue, float width)
+    private float RecalculateValue(float value, float middle, float halfWidth, float oldMin, float oldMax)
     {
-        float newMax = calibratedValue + width;
-        float newMin = calibratedValue - width;
-        return ((value - MIN) / (MAX - MIN)) * ((newMax - newMin)+ newMin);
+        float newMax = middle + halfWidth;
+        float newMin = middle - halfWidth;
+        return ((value - oldMin) / (oldMax - oldMin)) * (newMax - newMin) + newMin;
     }
 
     private float RecalculateValue2(float value, float calibratedValue, float width)
