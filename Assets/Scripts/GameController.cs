@@ -36,9 +36,7 @@ public class GameController : MonoBehaviour
         Invoke("AddPoint", 1.0f);
         Ball.transform.position = _ballPosition;
         Ball.SetActive(true);
-        Ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Ball.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0.0f, 0.25f), 0.0f, Random.Range(0.0f, 0.25f)));
-        FindObjectOfType<Tilter>().IsGameTime = true;
+        FindObjectOfType<Tilter>().StartCalibration();
     }
 
     public void RestartBestScore()
@@ -60,9 +58,9 @@ public class GameController : MonoBehaviour
         if (_points > PlayerPrefs.GetInt("BestScore"))
         {
             PlayerPrefs.SetInt("BestScore", _points);
-        }      
-        Ball.SetActive(false);
+        }
         Ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        Ball.SetActive(false);    
         FindObjectOfType<Tilter>().IsGameTime = false;
     }
 }

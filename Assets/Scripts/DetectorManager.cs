@@ -44,7 +44,7 @@ public class DetectorManager : MonoBehaviour
             AudioSource.PlayClipAtPoint(maxTiltGO.GetComponent<TiltMeter>().WarningSound_PL, maxTiltGO.transform.position);
         }
         
-        Handheld.Vibrate();
+        //Handheld.Vibrate();
         Invoke("ScanAndWarn", SCAN_TIME - maxTilt);
     }
 

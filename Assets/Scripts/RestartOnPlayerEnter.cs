@@ -4,9 +4,9 @@ public class RestartOnPlayerEnter : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.tag.Equals("Player"))
         {
-            FindObjectOfType<GameController>().GameOver();
+            FindObjectOfType<GameController>().GameOver(); 
         }
     }
 }
