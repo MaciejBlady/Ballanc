@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 209480502}
   - component: {fileID: 209480501}
   - component: {fileID: 209480500}
+  - component: {fileID: 209480503}
   m_Layer: 5
   m_Name: Exit Button
   m_TagString: Untagged
@@ -352,12 +353,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1219606452}
-        m_MethodName: ExitGame
-        m_Mode: 1
+      - m_Target: {fileID: 1219606450}
+        m_MethodName: OnClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 209480500}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -409,6 +410,35 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 209480498}
+--- !u!114 &209480503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 209480498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d6a59118facef43aec9bffa3543c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSecondClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1219606452}
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  HintSound_PL: {fileID: 8300000, guid: feb8fbabe45d5b34d85e9daa35e44e22, type: 3}
+  HintSound_EN: {fileID: 8300000, guid: 513da94c5e64e1242b75c48aa7e7a1f5, type: 3}
 --- !u!1 &212814832
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +722,7 @@ GameObject:
   - component: {fileID: 513934227}
   - component: {fileID: 513934226}
   - component: {fileID: 513934225}
+  - component: {fileID: 513934228}
   m_Layer: 5
   m_Name: Options Button
   m_TagString: Untagged
@@ -758,11 +789,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1219606450}
-        m_MethodName: ShowOptionsMenu
-        m_Mode: 1
+        m_MethodName: OnClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 513934225}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -814,6 +845,35 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 513934223}
+--- !u!114 &513934228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513934223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d6a59118facef43aec9bffa3543c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSecondClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1219606450}
+        m_MethodName: ShowOptionsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  HintSound_PL: {fileID: 8300000, guid: f16b5d5fa79c86a48b7b97a0f74de258, type: 3}
+  HintSound_EN: {fileID: 8300000, guid: cbca573f581d19043a80b7cb42faf193, type: 3}
 --- !u!1 &524569772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,6 +1304,7 @@ GameObject:
   - component: {fileID: 862434039}
   - component: {fileID: 862434038}
   - component: {fileID: 862434037}
+  - component: {fileID: 862434040}
   m_Layer: 5
   m_Name: Change Language Button
   m_TagString: Untagged
@@ -1310,11 +1371,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1219606450}
-        m_MethodName: SwitchLanguage
-        m_Mode: 1
+        m_MethodName: OnClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 862434037}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1366,6 +1427,35 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 862434035}
+--- !u!114 &862434040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862434035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d6a59118facef43aec9bffa3543c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSecondClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1219606450}
+        m_MethodName: SwitchLanguage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  HintSound_PL: {fileID: 8300000, guid: 35cc951a6d489fa4294d886a94f5f5e9, type: 3}
+  HintSound_EN: {fileID: 8300000, guid: cae36c0bd6d0f664eb482d7919f5d6bd, type: 3}
 --- !u!1 &1045989333 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1507208450993482, guid: 61298c0a11e178641bc1d31ee2226bd7,
@@ -1801,6 +1891,10 @@ MonoBehaviour:
   ScoreText: {fileID: 164510706}
   NewBestScoreButton: {fileID: 1242354243}
   NoBestScoreButton: {fileID: 524569772}
+  NoBestScore_PL: {fileID: 8300000, guid: db5b9365254f9494ebf12c03a61171ec, type: 3}
+  BestScore_PL: {fileID: 8300000, guid: 8b60c9f4184871443aa02beec0d07d4d, type: 3}
+  NoBestScore_EN: {fileID: 8300000, guid: f3f31035bf240984da304c5b2288ec6f, type: 3}
+  BestScore_EN: {fileID: 8300000, guid: 55ad114405f4d094bb89ee6688849ef5, type: 3}
 --- !u!4 &1219606451
 Transform:
   m_ObjectHideFlags: 0
@@ -2427,6 +2521,7 @@ GameObject:
   - component: {fileID: 1726872764}
   - component: {fileID: 1726872763}
   - component: {fileID: 1726872762}
+  - component: {fileID: 1726872765}
   m_Layer: 5
   m_Name: Return Button
   m_TagString: Untagged
@@ -2493,11 +2588,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1219606450}
-        m_MethodName: ShowMainMenu
-        m_Mode: 1
+        m_MethodName: OnClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1726872762}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2549,6 +2644,35 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1726872760}
+--- !u!114 &1726872765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1726872760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d6a59118facef43aec9bffa3543c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSecondClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1219606450}
+        m_MethodName: ShowMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  HintSound_PL: {fileID: 8300000, guid: a71cfdf9bd7487145822681d19e2ac81, type: 3}
+  HintSound_EN: {fileID: 8300000, guid: 8e4846bcfceb00e43b7c603383fe9793, type: 3}
 --- !u!1 &1938567818
 GameObject:
   m_ObjectHideFlags: 0
@@ -2560,6 +2684,7 @@ GameObject:
   - component: {fileID: 1938567822}
   - component: {fileID: 1938567821}
   - component: {fileID: 1938567820}
+  - component: {fileID: 1938567823}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -2625,12 +2750,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1219606452}
-        m_MethodName: StartGame
-        m_Mode: 1
+      - m_Target: {fileID: 1219606450}
+        m_MethodName: OnClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1938567820}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2682,6 +2807,35 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1938567818}
+--- !u!114 &1938567823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1938567818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d6a59118facef43aec9bffa3543c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSecondClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1219606452}
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  HintSound_PL: {fileID: 8300000, guid: 980b381c67c3f5747a761f6662cbde85, type: 3}
+  HintSound_EN: {fileID: 8300000, guid: ddc6be56058b216448e312db08d03e45, type: 3}
 --- !u!1 &1958095999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2841,6 +2995,7 @@ GameObject:
   - component: {fileID: 2146865010}
   - component: {fileID: 2146865009}
   - component: {fileID: 2146865008}
+  - component: {fileID: 2146865011}
   m_Layer: 5
   m_Name: Remove Score Button
   m_TagString: Untagged
@@ -2906,17 +3061,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1219606452}
-        m_MethodName: RestartBestScore
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1277116597}
         m_MethodName: Play
         m_Mode: 1
@@ -2929,16 +3073,16 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1219606450}
-        m_MethodName: UpdateBestScoreText
-        m_Mode: 1
+        m_MethodName: OnClicked
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2146865008}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2146865009
@@ -2974,3 +3118,43 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2146865006}
+--- !u!114 &2146865011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2146865006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d6a59118facef43aec9bffa3543c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSecondClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1219606452}
+        m_MethodName: RestartBestScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1219606450}
+        m_MethodName: UpdateBestScoreText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  HintSound_PL: {fileID: 8300000, guid: e45d1ee25a95f3f44b6c0e7b77c5a46f, type: 3}
+  HintSound_EN: {fileID: 8300000, guid: 23684792bf27ae54cac63d7cfcb1fb48, type: 3}

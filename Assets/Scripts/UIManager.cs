@@ -25,13 +25,29 @@ public class UIManager : MonoBehaviour
     public GameObject NewBestScoreButton;
     public GameObject NoBestScoreButton;
 
+    public AudioClip NoBestScore_PL;
+    public AudioClip BestScore_PL;
+
+    public AudioClip NoBestScore_EN;
+    public AudioClip BestScore_EN;
+
+
     private Language _currentLanguage;
+    private Button _lastClicked;
 
     public Language CurrentLanguage
     {
         get
         {
             return _currentLanguage;
+        }
+    }
+
+    public Button LastClicked
+    {
+        get
+        {
+            return _lastClicked;
         }
     }
 
@@ -93,6 +109,29 @@ public class UIManager : MonoBehaviour
     {
         NewBestScoreButton.SetActive(isBestScore);
         NoBestScoreButton.SetActive(!isBestScore);
+
+        if (isBestScore)
+        {
+            if (_currentLanguage == Language.ENG)
+            {
+                AudioSource.PlayClipAtPoint(BestScore_EN, Vector3.zero);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(BestScore_PL, Vector3.zero);
+            }
+        }
+        else
+        {
+            if (_currentLanguage == Language.ENG)
+            {
+                AudioSource.PlayClipAtPoint(NoBestScore_EN, Vector3.zero);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(NoBestScore_PL, Vector3.zero);
+            }
+        }
     }
 
     public void UpdateScoreText(int value)
@@ -132,4 +171,27 @@ public class UIManager : MonoBehaviour
             BestScoreText.GetComponentInChildren<Text>().text = string.Format("Najlepszy wynik: {0}", value);
         }
     }
+
+    public void OnClicked(Button button)
+    {
+        if (button == _lastClicked)
+        {
+            //do stuff
+            button.gameObject.GetComponent<ButtonBehaviour>().Do();
+            _lastClicked = null;
+        }
+        else
+        {
+            //play sound
+            button.gameObject.GetComponent<ButtonBehaviour>().PlayHint();
+            _lastClicked = button;
+        }
+
+        if (_lastClicked!=null)
+        {
+            Debug.Log(string.Format("Current: {0}, previous: {1}", button.name, _lastClicked.name));
+        }      
+        //_lastClicked = button;
+    }
+
 }
