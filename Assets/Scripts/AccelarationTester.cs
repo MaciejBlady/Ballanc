@@ -13,6 +13,7 @@ public class AccelarationTester : MonoBehaviour
     private const float MIN_X = -0.5f;
     private const float MAX_X = 0.5f;
     private const float MAX_ANGLE = 30.0f;
+    private const float ANGLE_STEP = 1.0f;
 
     private bool _isCalibrating;
 
@@ -25,8 +26,11 @@ public class AccelarationTester : MonoBehaviour
     private float _yRangeWidth;
     private float _zRangeWidth;
 
+    private Vector3 _values = new Vector3();
+
     private void Update()
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
         string rawText = string.Format("Raw Values\nX:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}", Input.acceleration.x, Input.acceleration.y, Input.acceleration.z);
         string calibratedText = string.Format("Is Calibrating = {0}\n", _isCalibrating);
         string recalculatedText = string.Format("Recalculated Values\n");
@@ -40,7 +44,7 @@ public class AccelarationTester : MonoBehaviour
         }
         else
         {
-            calibratedText += string.Format("Calibrated Values\nX:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}\nX:{3:0.###}\nY:{4:0.###}\nZ:{5:0.###}\nCounts{6}", _xCalibratedValue, _yCalibratedValue, _zCalibratedValue);
+            calibratedText += string.Format("Calibrated Values\nX:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}\n", _xCalibratedValue, _yCalibratedValue, _zCalibratedValue);
             recalculatedText += string.Format("X:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}",
                 ConsiderCalibration(Input.acceleration.x, _xCalibratedValue),
                 ConsiderCalibration(Input.acceleration.y, _yCalibratedValue),
@@ -49,12 +53,16 @@ public class AccelarationTester : MonoBehaviour
             values.x = RecalculateValue(ConsiderCalibration(Input.acceleration.x, _xCalibratedValue), 0.0f, MAX_ANGLE, MIN_X, MAX_X);
             values.y = RecalculateValue(ConsiderCalibration(Input.acceleration.y, _yCalibratedValue), 0.0f, MAX_ANGLE, MIN, MAX);
             values.z = RecalculateValue(ConsiderCalibration(Input.acceleration.z, _zCalibratedValue), 0.0f, MAX_ANGLE, MIN, MAX);
-            anglesText += string.Format("X:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}", values.x, values.y, values.z);
+            _values.x = Mathf.Clamp(values.x, _values.x - ANGLE_STEP, _values.x + ANGLE_STEP);
+            _values.z = Mathf.Clamp(values.z, _values.z - ANGLE_STEP, _values.z + ANGLE_STEP);
+            _values.y = Mathf.Clamp(values.y, _values.y - ANGLE_STEP, _values.y + ANGLE_STEP);
+            anglesText += string.Format("X:{0:0.###}\nY:{1:0.###}\nZ:{2:0.###}", _values.x, _values.y, _values.z);
         }
         RawDataText.GetComponent<Text>().text = rawText;
         CalibratedText.GetComponent<Text>().text = calibratedText;
         RecalculatedText.GetComponent<Text>().text = recalculatedText;
         AnglesText.GetComponent<Text>().text = anglesText;
+#endif
     }
 
     public void Vibrate()

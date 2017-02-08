@@ -21,6 +21,7 @@ public class Tilter : MonoBehaviour
     private const float MIN_X = -0.5f;
     private const float MAX_X = 0.5f;
     private const float MAX_ANGLE = 30.0f;
+    private const float ANGLE_STEP = 1.0f;
 
     public bool IsGameTime
     {
@@ -48,7 +49,21 @@ public class Tilter : MonoBehaviour
         {
             if (IsGameTime)
             {
-                transform.eulerAngles = GetRotation(Input.acceleration);
+#if UNITY_EDITOR
+                Vector3 temp = new Vector3(Input.GetAxis("Vertical"), 0.0f, -Input.GetAxis("Horizontal"));
+                transform.eulerAngles = temp * MAX_ANGLE;
+#endif
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+                Vector3 temp1 = new Vector3();
+                temp1.x = -ConsiderCalibration(Input.acceleration.z, _zCalibratedValue) * MAX_ANGLE;
+                temp1.z = -ConsiderCalibration(Input.acceleration.x, _xCalibratedValue) * MAX_ANGLE * 2;
+                transform.eulerAngles = temp1;
+#endif
+            }
+            else
+            {
+                transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.zero, 5.0f * Time.deltaTime);
             }
         }
 
@@ -57,8 +72,8 @@ public class Tilter : MonoBehaviour
     private Vector3 GetRotation(Vector3 acceleration)
     {
         Vector3 values = new Vector3();
-        values.x = -RecalculateValue(ConsiderCalibration(Input.acceleration.x, _xCalibratedValue), 0.0f, MAX_ANGLE, MIN_X, MAX_X);
-        values.z = RecalculateValue(ConsiderCalibration(Input.acceleration.z, _zCalibratedValue), 0.0f, MAX_ANGLE, MIN_Z, MAX_Z);
+        values.x = -RecalculateValue(ConsiderCalibration(acceleration.z, _zCalibratedValue), 0.0f, MAX_ANGLE, MIN_Z, MAX_Z);
+        values.z = -RecalculateValue(ConsiderCalibration(acceleration.x, _xCalibratedValue), 0.0f, MAX_ANGLE, MIN_X, MAX_X);
 
         return values;
     }

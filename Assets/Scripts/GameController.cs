@@ -60,7 +60,7 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetInt("BestScore", _points);
         }
         Ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Ball.SetActive(false);    
+        //Ball.SetActive(false);    
         FindObjectOfType<Tilter>().IsGameTime = false;
     }
 }
