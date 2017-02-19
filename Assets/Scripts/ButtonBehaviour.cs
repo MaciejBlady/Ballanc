@@ -14,13 +14,12 @@ public class ButtonBehaviour : MonoBehaviour
     {
         if (GameObject.FindObjectOfType<UIManager>().CurrentLanguage == UIManager.Language.ENG)
         {
-            AudioSource.PlayClipAtPoint(HintSound_EN, Vector3.zero);
+            GameObject.FindGameObjectWithTag("Canvas").GetComponent<AudioSource>().PlayOneShot(HintSound_EN);
         }
         else
         {
-            AudioSource.PlayClipAtPoint(HintSound_PL, Vector3.zero);
+            GameObject.FindGameObjectWithTag("Canvas").GetComponent<AudioSource>().PlayOneShot(HintSound_PL);
         }
-
     }
 
     public void Do()

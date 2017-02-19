@@ -9,12 +9,15 @@ public class Beeper : MonoBehaviour {
 
     private float _distance = BEEP_FACTOR;
 
-    private const float BEEP_FACTOR = 0.4f;
+    private const float BEEP_FACTOR = 0.6f;
+    AudioSource _audio;
 
     void Start ()
     {
         Beep();
-	}
+        _audio = GetComponent<AudioSource>();
+
+    }
 	
 	void Update ()
     {
@@ -23,7 +26,11 @@ public class Beeper : MonoBehaviour {
 
     private void Beep()
     {
-        AudioSource.PlayClipAtPoint(_beep, transform.position);
+        if (FindObjectOfType<Tilter>().IsGameTime)
+        {
+           _audio.PlayOneShot(_beep);
+        }
+
         Invoke("Beep", BeepPeriod());
     }
 

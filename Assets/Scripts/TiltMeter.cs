@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TiltMeter : MonoBehaviour {
+public class TiltMeter : MonoBehaviour
+{
 
+    public GameObject Ball;
     public GameObject Target;
     public AudioClip WarningSound_PL;
     public AudioClip WarningSound_EN;
 
     private MeshRenderer _renderer;
     private float _difference = 0.0f;
-
+    private float _distance = 0.0f;
     public float NormalizedDifference
     {
         get
@@ -18,6 +18,15 @@ public class TiltMeter : MonoBehaviour {
             return _difference;
         }
     }
+
+    public float Distance
+    {
+        get
+        {
+            return _distance;
+        }
+    }
+
 
     void Start ()
     {
@@ -28,15 +37,20 @@ public class TiltMeter : MonoBehaviour {
 	void Update ()
     {
         float difference = transform.position.y - Target.transform.position.y;
-        Color color = Color.green;
-
         _difference = Mathf.Clamp01(difference);
+        _distance = Vector3.Distance(transform.position, Ball.transform.position);
+    }
 
-        if (difference > 0.0f)
+    public void PlayWarningSound()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (GameObject.FindObjectOfType<UIManager>().CurrentLanguage == UIManager.Language.ENG)
         {
-            color = new Color(_difference, 0.0f, 0.0f);
+            audioSource.PlayOneShot(WarningSound_EN);
         }
-
-        //_renderer.material.color = color;       
+        else
+        {
+            audioSource.PlayOneShot(WarningSound_PL);
+        }
     }
 }

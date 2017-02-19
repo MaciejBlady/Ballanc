@@ -7,45 +7,68 @@ public class DetectorManager : MonoBehaviour
     public GameObject[] Detectors;
     private const float SCAN_TIME = 1.0f;
 
-	void Start ()
-    {
-        ScanAndWarn();
-    }
+    private GameObject _nearestDetector;
 
-    void ScanAndWarn()
+    private void Update()
     {
-        float maxTilt = -1.0f;
-        GameObject maxTiltGO = null;
-        foreach (var detector in Detectors)
+        if (GameObject.FindObjectOfType<Tilter>().IsGameTime)
         {
-            float diff = detector.GetComponent<TiltMeter>().NormalizedDifference;
-            detector.GetComponent<MeshRenderer>().material.color = Color.white;
-            if (diff > maxTilt)
+            float minDistance = 100000f;
+
+            GameObject minDistGO = null;
+            foreach (var detector in Detectors)
             {
-                maxTilt = diff;
-                maxTiltGO = detector;
+                float dist = detector.GetComponent<TiltMeter>().Distance;
+                detector.GetComponent<MeshRenderer>().material.color = Color.white;
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    minDistGO = detector;
+                }
+            }
+
+            if (minDistGO != _nearestDetector)
+            {
+                _nearestDetector = minDistGO;
+                _nearestDetector.GetComponent<TiltMeter>().PlayWarningSound();
             }
         }
-
-        if (!GameObject.FindObjectOfType<Tilter>().IsGameTime)
-        {
-            Invoke("ScanAndWarn", SCAN_TIME);
-            return;
-        }
-
-        maxTiltGO.GetComponent<MeshRenderer>().material.color = Color.red;
-
-        if (GameObject.FindObjectOfType<UIManager>().CurrentLanguage == UIManager.Language.ENG)
-        {
-            AudioSource.PlayClipAtPoint(maxTiltGO.GetComponent<TiltMeter>().WarningSound_EN, maxTiltGO.transform.position);
-        }
-        else
-        {
-            AudioSource.PlayClipAtPoint(maxTiltGO.GetComponent<TiltMeter>().WarningSound_PL, maxTiltGO.transform.position);
-        }
-        
-        //Handheld.Vibrate();
-        Invoke("ScanAndWarn", SCAN_TIME - maxTilt);
     }
+
+    //void ScanAndWarn()
+    //{
+    //    if (!GameObject.FindObjectOfType<Tilter>().IsGameTime)
+    //    {
+    //        Invoke("ScanAndWarn", SCAN_TIME);
+    //        return;
+    //    }
+
+    //    float maxTilt = -1.0f;
+    //    GameObject maxTiltGO = null;
+    //    foreach (var detector in Detectors)
+    //    {
+    //        float diff = detector.GetComponent<TiltMeter>().NormalizedDifference;
+    //        detector.GetComponent<MeshRenderer>().material.color = Color.white;
+    //        if (diff > maxTilt)
+    //        {
+    //            maxTilt = diff;
+    //            maxTiltGO = detector;
+    //        }
+    //    }
+
+    //    maxTiltGO.GetComponent<MeshRenderer>().material.color = Color.red;
+
+    //    if (GameObject.FindObjectOfType<UIManager>().CurrentLanguage == UIManager.Language.ENG)
+    //    {
+    //        AudioSource.PlayClipAtPoint(maxTiltGO.GetComponent<TiltMeter>().WarningSound_EN, maxTiltGO.transform.position);
+    //    }
+    //    else
+    //    {
+    //        AudioSource.PlayClipAtPoint(maxTiltGO.GetComponent<TiltMeter>().WarningSound_PL, maxTiltGO.transform.position);
+    //    }
+    //    Debug.Log(maxTilt);
+    //    //Handheld.Vibrate();
+    //    Invoke("ScanAndWarn", SCAN_TIME - maxTilt);
+    //}
 
 }

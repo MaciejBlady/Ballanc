@@ -110,26 +110,32 @@ public class UIManager : MonoBehaviour
         NewBestScoreButton.SetActive(isBestScore);
         NoBestScoreButton.SetActive(!isBestScore);
 
+        AudioSource audio = GameObject.FindGameObjectWithTag("Canvas").GetComponent<AudioSource>();
+
         if (isBestScore)
         {
             if (_currentLanguage == Language.ENG)
             {
-                AudioSource.PlayClipAtPoint(BestScore_EN, Vector3.zero);
+                audio.PlayOneShot(BestScore_EN);
+                //AudioSource.PlayClipAtPoint(BestScore_EN, Vector3.zero);
             }
             else
             {
-                AudioSource.PlayClipAtPoint(BestScore_PL, Vector3.zero);
+                audio.PlayOneShot(BestScore_PL);
+                //AudioSource.PlayClipAtPoint(BestScore_PL, Vector3.zero);
             }
         }
         else
         {
             if (_currentLanguage == Language.ENG)
             {
-                AudioSource.PlayClipAtPoint(NoBestScore_EN, Vector3.zero);
+                audio.PlayOneShot(NoBestScore_EN);
+                //AudioSource.PlayClipAtPoint(NoBestScore_EN, Vector3.zero);
             }
             else
             {
-                AudioSource.PlayClipAtPoint(NoBestScore_PL, Vector3.zero);
+                audio.PlayOneShot(NoBestScore_PL);
+                //AudioSource.PlayClipAtPoint(NoBestScore_PL, Vector3.zero);
             }
         }
     }
