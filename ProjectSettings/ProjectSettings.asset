@@ -119,7 +119,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: com.BladyFernes.Balansowanie
-  bundleVersion: 1.8.6.5
+  bundleVersion: 2.0
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
@@ -19,7 +17,7 @@ public class GameController : MonoBehaviour
     {
         _uiManager.ShowMainMenu();
         _ballPosition = Ball.transform.position;
-        Ball.SetActive(false);
+        RestartBall(true);
     }
 	
     public void ExitGame()
@@ -34,8 +32,8 @@ public class GameController : MonoBehaviour
         _points = 0;
         _uiManager.UpdateScoreText(_points);
         Invoke("AddPoint", 1.0f);
-        Ball.transform.position = _ballPosition;
-        Ball.SetActive(true);
+        RestartBall(false);
+        Ball.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-0.25f, 0.25f), 0.0f, Random.Range(-0.25f, 0.25f));
         FindObjectOfType<Tilter>().StartCalibration();
     }
 
@@ -59,8 +57,15 @@ public class GameController : MonoBehaviour
         {
             PlayerPrefs.SetInt("BestScore", _points);
         }
-        Ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        //Ball.SetActive(false);    
+        RestartBall(true);
         FindObjectOfType<Tilter>().IsGameTime = false;
+    }
+
+    private void RestartBall(bool isHidden)
+    {
+        Ball.transform.position = _ballPosition;
+        Ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        Ball.GetComponent<Rigidbody>().isKinematic = isHidden;
+        Ball.GetComponent<MeshRenderer>().enabled = !isHidden;
     }
 }
