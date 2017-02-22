@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using System;
 
-public class ButtonBehaviour : MonoBehaviour
+public class ButtonBehaviour : MonoBehaviour, ISelectHandler
 {
     public UnityEvent OnSecondClick;
     public AudioClip HintSound_PL;
@@ -25,5 +26,10 @@ public class ButtonBehaviour : MonoBehaviour
     public void Do()
     {
         OnSecondClick.Invoke();
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        Debug.Log("Selected" + eventData.selectedObject);
     }
 }

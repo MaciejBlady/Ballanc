@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -99,6 +99,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 36223304}
+  - component: {fileID: 36223305}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -128,6 +129,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &36223305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 36223303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568795f411dce3e488128e7bc1d689f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sound_PL: {fileID: 8300000, guid: f76a5ae914616bc468812b44ccd1b398, type: 3}
+  _sound_EN: {fileID: 8300000, guid: a3ddc700c71c71f459f887a2e389d15b, type: 3}
+  _source: {fileID: 1277116597}
 --- !u!1 &38895971
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +462,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 212814833}
+  - component: {fileID: 212814834}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -476,6 +492,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &212814834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 212814832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568795f411dce3e488128e7bc1d689f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sound_PL: {fileID: 8300000, guid: cc85353dad65a2d48b9a14f449f67cfa, type: 3}
+  _sound_EN: {fileID: 8300000, guid: 9ab34b16c09990f48a72961fc92e0fa6, type: 3}
+  _source: {fileID: 1277116597}
 --- !u!1 &301177668
 GameObject:
   m_ObjectHideFlags: 0

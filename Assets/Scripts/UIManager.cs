@@ -34,6 +34,9 @@ public class UIManager : MonoBehaviour
 
     private Language _currentLanguage;
     private Button _lastClicked;
+    private float _timeLastClicked = 0;
+
+    const float MAX_TIME_BETWEEN_DOUBLETAP_TAPS = 0.45f;
 
     public Language CurrentLanguage
     {
@@ -50,6 +53,8 @@ public class UIManager : MonoBehaviour
             return _lastClicked;
         }
     }
+
+
 
     private void ChangeDisplayedText(Language lang)
     {
@@ -180,7 +185,8 @@ public class UIManager : MonoBehaviour
 
     public void OnClicked(Button button)
     {
-        if (button == _lastClicked)
+        
+        if (button == _lastClicked && IsDoubletap())
         {
             //do stuff
             button.gameObject.GetComponent<ButtonBehaviour>().Do();
@@ -196,8 +202,15 @@ public class UIManager : MonoBehaviour
         if (_lastClicked!=null)
         {
             Debug.Log(string.Format("Current: {0}, previous: {1}", button.name, _lastClicked.name));
-        }      
-        //_lastClicked = button;
+        }
+
+        _timeLastClicked = Time.unscaledTime;
     }
 
+    private bool IsDoubletap()
+    {
+        float difference = Time.unscaledTime - _timeLastClicked;
+
+        return difference <= MAX_TIME_BETWEEN_DOUBLETAP_TAPS;
+    }
 }
