@@ -2367,6 +2367,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1275529542}
+  - component: {fileID: 1275529543}
   m_Layer: 5
   m_Name: InGame
   m_TagString: Untagged
@@ -2395,6 +2396,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1275529543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1275529541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568795f411dce3e488128e7bc1d689f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sound_PL: {fileID: 8300000, guid: 7bb6169b1a0ae534794bcf2b02c489eb, type: 3}
+  _sound_EN: {fileID: 8300000, guid: 0bf15e0313e3d7744abceb233b3e4692, type: 3}
+  _source: {fileID: 1277116597}
 --- !u!1 &1277116592
 GameObject:
   m_ObjectHideFlags: 0
